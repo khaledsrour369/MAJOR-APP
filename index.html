@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#191c14">
+<meta name="description" content="MAJOR — a daily mission log for training and mindfulness.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+  <title>MAJOR — Daily Mission Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@700;900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="dossier-header">
+    <div class="header-left">
+      <span class="crest">✦</span>
+      <div class="wordmark"><h1>MAJOR</h1><p class="subtitle" data-i18n="subtitle">Daily Mission Log</p></div>
+    </div>
+    <div class="header-right">
+      <div class="stat-block"><span class="stat-label" data-i18n="streak">Streak</span><span class="stat-value" id="streak-value">0</span></div>
+      <div class="stat-block"><span class="stat-label" data-i18n="date">Date</span><span class="stat-value" id="date-value">--</span></div>
+      <div class="stat-block"><span class="stat-label" data-i18n="language">Language</span><button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">AR</button></div>
+    </div>
+  </header>
+  <main class="dossier-body">
+    <section class="plan-select" aria-label="Choose today's plan">
+      <p class="section-label" data-i18n="todayOperation">Today's Operation</p>
+      <div class="plan-tabs" id="plan-tabs">
+        <button class="plan-stamp" data-plan="A"><span class="plan-letter">A</span><span class="plan-word">MAJOR&nbsp;A</span></button>
+        <button class="plan-stamp" data-plan="B"><span class="plan-letter">B</span><span class="plan-word">MAJOR&nbsp;B</span></button>
+        <button class="plan-stamp" data-plan="C"><span class="plan-letter">C</span><span class="plan-word">MAJOR&nbsp;C</span></button>
+      </div>
+      <p class="suggestion" id="suggestion-text"></p>
+    </section>
+    <section class="mission-list" aria-label="Today's five missions">
+      <p class="section-label" data-i18n="objectives">Objectives — Complete All Five</p>
+      <div id="missions"></div>
+    </section>
+  </main>
+  <footer class="dossier-footer"><p data-i18n="footer">Tap a mission to expand it. Progress saves automatically on this device.</p></footer>
+  <script src="script.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js");
+    });
+  }
+</script>
+</body>
+</html>
