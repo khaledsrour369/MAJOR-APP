@@ -1,11 +1,8 @@
 {
-  "id": "./",
   "name": "MAJOR — Daily Mission Log",
   "short_name": "MAJOR",
   "description": "A daily mission log for training and mindfulness.",
-  "lang": "en",
-  "dir": "auto",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#191c14",

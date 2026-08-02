@@ -1,310 +1,358 @@
-/* =========================================================
-   MAJOR APP — Daily Mission Log
-   ---------------------------------------------------------
-   Every mission is a checklist. Each item has its own
-   checkbox and a 🖼 link that opens an image search for
-   that exercise/task. You can edit any item's text, add
-   new items with "+ Add item", or remove one with the ✕.
-   ========================================================= */
-
-/* ---- 1. Default data structure -------------------------
-   note  = optional short label shown above the checklist
-   items = the actual checkable list for that mission        */
+/* MAJOR — Daily Mission Log.  Language preference is saved per device. */
 const DEFAULT_PLANS = {
   A: {
     BF: { title: "Body Function Training", note: "", items: ["#FULL STRETCHES"] },
-    WL: {
-      title: "Weight Lifting",
-      note: "#UPPER LIMBS",
-      items: [
-        "1: Barbell Overhead Press",
-        "2: Seated Dumbbell Press",
-        "3: Arnold Press",
-        "4: Dumbbell Lateral Raise",
-        "5: Dumbbell Front Raise",
-        "6: Rear Delt Flyes",
-        "7: Barbell Upright Row",
-        "8: Barbell Bicep Curl",
-        "9: Dumbbell Alternate Curl",
-        "10: Chin-Ups",
-        "11: Concentration Curl",
-        "12: Incline Dumbbell Curl",
-        "13: Close-Grip Bench Press",
-        "14: Dumbbell Skull Crushers",
-        "15: Overhead DB Extension",
-        "16: Bench Dips",
-        "17: Tricep Kickbacks",
-        "18: Hammer Curls",
-        "19: Reverse Barbell Curls",
-        "20: Zottman Curls",
-        "21: Cross-Body Hammer Curl",
-        "22: Wrist Curls",
-        "23: Reverse Wrist Curls",
-        "24: Barbell Static Hold",
-        "25: Dumbbell Farmer's Walk",
-        "26: Dead Hangs",
-        "27: Lying Neck Flexion (Front)",
-        "28: Lying Neck Extension (Back)",
-        "29: Lateral Neck Flexion (Side)",
-        "30: Barbell Shrugs",
-        "31: Dumbbell Shrugs",
-      ],
-    },
-    MA: { title: "Martial Arts", note: "", items: ["#ATTACK FOCUS"] },
-    SW: { title: "Side Weapon Training", note: "", items: ["#STICKS"] },
-    MF: { title: "Mindfulness & Meditation", note: "", items: ["SILENCE AND BREATH"] },
+    WL: { title: "Weight Lifting", note: "#UPPER LIMBS", items: ["1: Barbell Overhead Press", "2: Seated Dumbbell Press", "3: Arnold Press", "4: Dumbbell Lateral Raise", "5: Dumbbell Front Raise", "6: Rear Delt Flyes", "7: Barbell Upright Row", "8: Barbell Bicep Curl", "9: Dumbbell Alternate Curl", "10: Chin-Ups", "11: Concentration Curl", "12: Incline Dumbbell Curl", "13: Close-Grip Bench Press", "14: Dumbbell Skull Crushers", "15: Overhead DB Extension", "16: Bench Dips", "17: Tricep Kickbacks", "18: Hammer Curls", "19: Reverse Barbell Curls", "20: Zottman Curls", "21: Cross-Body Hammer Curl", "22: Wrist Curls", "23: Reverse Wrist Curls", "24: Barbell Static Hold", "25: Dumbbell Farmer's Walk", "26: Dead Hangs", "27: Lying Neck Flexion (Front)", "28: Lying Neck Extension (Back)", "29: Lateral Neck Flexion (Side)", "30: Barbell Shrugs", "31: Dumbbell Shrugs"] },
+    MA: { title: "Martial Arts", note: "", items: ["#ATTACK FOCUS"] }, SW: { title: "Side Weapon Training", note: "", items: ["#STICKS"] }, MF: { title: "Mindfulness & Meditation", note: "", items: ["SILENCE AND BREATH"] },
   },
   B: {
-    BF: { title: "Body Function Training", note: "", items: [""] },
-    WL: { title: "Weight Lifting", note: "", items: [""] },
-    MA: { title: "Martial Arts", note: "", items: [""] },
-    SW: { title: "Side Weapon Training", note: "", items: [""] },
-    MF: { title: "Mindfulness & Meditation", note: "", items: [""] },
+    BF: { title: "Body Function Training", note: "", items: ["#HOT YOGA"] },
+    WL: { title: "Weight Lifting", note: "#TRUNK", items: [
+        "1: Weighted Crunches",
+        "2: Weighted Sit-Ups",
+        "3: Decline Weighted Sit-Ups",
+        "4: Decline Crunches",
+        "5: Bench Leg Raises",
+        "6: Hanging Leg Raises",
+        "7: Hanging Knee Raises",
+        "8: Toes to Bar",
+        "9: L-Sit Hold",
+        "10: Tuck-Ups",
+        "11: Dragon Flags",
+        "12: Weighted Plank",
+        "13: Barbell Rollouts",
+        "14: Weighted V-Ups",
+        "15: Dumbbell Toe Touches",
+        "16: Hanging Windshield Wipers",
+        "17: Front Plank",
+        "18: Hollow Body Hold",
+        "19: Weighted Hollow Body Hold",
+        "20: Dumbbell Side Bends",
+        "21: Dumbbell Russian Twists",
+        "22: Weighted Side Plank",
+        "23: Hanging Oblique Knee Raises",
+        "24: Hanging Oblique Leg Raises",
+        "25: Windshield Wipers",
+        "26: Dumbbell Woodchoppers",
+        "27: Saxon Side Bends",
+        "28: Side Plank with Hip Dips",
+        "29: Weighted Side Plank with Hip Dips",
+        "30: Oblique Crunches",
+        "31: Bicycle Crunches",
+        "32: Barbell Side Bends",
+        "33: Barbell Russian Twists",
+        "34: Barbell Deadlifts",
+        "35: Barbell Romanian Deadlifts",
+        "36: Barbell Good Mornings",
+        "37: Barbell Stiff-Leg Deadlifts",
+        "38: Dumbbell Romanian Deadlifts",
+        "39: Dumbbell Single-Leg RDL",
+        "40: Back Extensions",
+        "41: Superman Holds",
+        "42: Bird Dogs",
+        "43: Barbell Hip Thrusts",
+        "44: Barbell Glute Bridges",
+        "45: Dumbbell Hip Thrusts",
+        "46: Suitcase Deadlifts",
+        "47: Farmer's Walk",
+        "48: Waiter Walks",
+        "49: Barbell Overhead Hold",
+        "50: Renegade Rows",
+        "51: Dead Bug",
+        "52: Weighted Dead Bug",
+        "53: Bear Crawl",
+        "54: Barbell Front Squat",
+        "55: Barbell Overhead Press",
+        "56: Turkish Get-Up",
+        "57: Copenhagen Plank",
+        "58: Side Plank",
+        "59: Plank",
+        "60: Dumbbell Suitcase Carry",
+        "61: Barbell Zercher Hold",
+        "62: Barbell Zercher Squat",
+        "63: Dumbbell Pullover",
+        "64: Barbell Pullover",
+        "65: Kneeling Barbell Rollouts",
+        "66: Standing Barbell Rollouts",
+        "67: Weighted Decline Plank",
+        "68: Dumbbell Chops",
+        "69: Reverse Crunches",
+        "70: Weighted Reverse Crunches",
+        "71: Scissor Kicks",
+        "72: Flutter Kicks",
+        "73: Hanging Scissor Kicks",
+        "74: L-Sit Pull-Ups",
+        "75: Dumbbell Plank Drag Throughs",
+        "76: Body Saws",
+        "77: Ab Wheel Rollouts",
+        "78: Barbell Thrusters",
+        "79: Dumbbell Thrusters",
+        "80: Man Makers"
+      ] },
+    MA: { title: "Martial Arts", note: "", items: ["#DEFENSE"] },
+    SW: { title: "Side Weapon Training", note: "", items: ["#KNIVES"] },
+    MF: { title: "Mindfulness & Meditation", note: "", items: ["#Theta Waves Focus & Wim-Hof"] },
   },
   C: {
-    BF: { title: "Body Function Training", note: "", items: [""] },
-    WL: { title: "Weight Lifting", note: "", items: [""] },
-    MA: { title: "Martial Arts", note: "", items: [""] },
-    SW: { title: "Side Weapon Training", note: "", items: [""] },
-    MF: { title: "Mindfulness & Meditation", note: "", items: [""] },
+    BF: { title: "Body Function Training", note: "", items: ["#FLEXMOBILITY"] },
+    WL: { title: "Weight Lifting", note: "#LOWER LIMBS", items: [
+        "1: Barbell Back Squat",
+        "2: Barbell Front Squat",
+        "3: Barbell Box Squat",
+        "4: Barbell Hack Squat",
+        "5: Barbell Overhead Squat",
+        "6: Barbell Zercher Squat",
+        "7: Barbell Lunges",
+        "8: Barbell Reverse Lunges",
+        "9: Barbell Walking Lunges",
+        "10: Barbell Step-Ups",
+        "11: Barbell Bulgarian Split Squats",
+        "12: Dumbbell Goblet Squats",
+        "13: Dumbbell Lunges",
+        "14: Dumbbell Reverse Lunges",
+        "15: Dumbbell Walking Lunges",
+        "16: Dumbbell Step-Ups",
+        "17: Dumbbell Bulgarian Split Squats",
+        "18: Dumbbell Squats",
+        "19: Sissy Squats",
+        "20: Wall Sits",
+        "21: Barbell Romanian Deadlifts",
+        "22: Barbell Stiff-Leg Deadlifts",
+        "23: Barbell Good Mornings",
+        "24: Barbell Single-Leg RDL",
+        "25: Dumbbell Romanian Deadlifts",
+        "26: Dumbbell Stiff-Leg Deadlifts",
+        "27: Dumbbell Single-Leg RDL",
+        "28: Nordic Hamstring Curls",
+        "29: Glute-Ham Raises",
+        "30: Barbell Hip Thrusts",
+        "31: Barbell Glute Bridges",
+        "32: Barbell Single-Leg Hip Thrusts",
+        "33: Barbell Sumo Deadlifts",
+        "34: Barbell Deficit Deadlifts",
+        "35: Barbell B-Stance Hip Thrusts",
+        "36: Dumbbell Hip Thrusts",
+        "37: Dumbbell Glute Bridges",
+        "38: Dumbbell Single-Leg Hip Thrusts",
+        "39: Dumbbell Frog Pumps",
+        "40: Dumbbell Donkey Kicks",
+        "41: Dumbbell Fire Hydrants",
+        "42: Barbell Frog Pumps",
+        "43: Dumbbell Curtsy Lunges",
+        "44: Barbell Curtsy Lunges",
+        "45: Dumbbell Lateral Lunges",
+        "46: Barbell Lateral Lunges",
+        "47: Barbell Standing Calf Raises",
+        "48: Barbell Seated Calf Raises",
+        "49: Dumbbell Standing Calf Raises",
+        "50: Dumbbell Seated Calf Raises",
+        "51: Single-Leg Dumbbell Calf Raises",
+        "52: Single-Leg Barbell Calf Raises",
+        "53: Farmer's Walk on Toes",
+        "54: Dumbbell Cossack Squats",
+        "55: Barbell Cossack Squats",
+        "56: Dumbbell Side Lunges",
+        "57: Barbell Side Lunges",
+        "58: Copenhagen Plank",
+        "59: Side-Lying Clamshells",
+        "60: Side-Lying Leg Raises",
+        "61: Wall Tibialis Raises",
+        "62: Barbell Tibialis Raises"
+      ] },
+    MA: { title: "Martial Arts", note: "", items: ["#CONTROL"] },
+    SW: { title: "Side Weapon Training", note: "", items: ["#G"] },
+    MF: { title: "Mindfulness & Meditation", note: "", items: ["#Transcendental Meditation"] },
   },
 };
 
-const MISSION_ORDER = ["BF", "WL", "MA", "SW", "MF"];
-const STORAGE_KEY = "major-app-data";
-
-/* ---- 2. Load / save from localStorage ------------------- */
-function loadData() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) {
-    return { plans: DEFAULT_PLANS, log: {} };
-  }
-  try {
-    const parsed = JSON.parse(raw);
-    parsed.log = parsed.log || {};
-
-    // Merge saved plans with the latest DEFAULT_PLANS:
-    // - if you've already edited a mission's items/note, that's kept
-    // - anything never touched falls back to the newest defaults here
-    const merged = {};
-    Object.keys(DEFAULT_PLANS).forEach((planLetter) => {
-      merged[planLetter] = {};
-      Object.keys(DEFAULT_PLANS[planLetter]).forEach((code) => {
-        const saved = parsed.plans && parsed.plans[planLetter] && parsed.plans[planLetter][code];
-        const def = DEFAULT_PLANS[planLetter][code];
-        const hasSavedItems =
-          saved && Array.isArray(saved.items) && saved.items.some((i) => i && i.trim());
-        merged[planLetter][code] = {
-          title: def.title,
-          note: saved && saved.note ? saved.note : def.note,
-          items: hasSavedItems ? saved.items : def.items,
-        };
-      });
-    });
-    parsed.plans = merged;
-    return parsed;
-  } catch (e) {
-    console.error("Could not read saved data, starting fresh.", e);
-    return { plans: DEFAULT_PLANS, log: {} };
-  }
-}
-
-function saveData() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-/* ---- 3. App state ---------------------------------------- */
+const AR_TITLES = { BF: "تدريب وظائف الجسم", WL: "رفع الأثقال", MA: "الفنون القتالية", SW: "تدريب السلاح الجانبي", MF: "اليقظة والتأمل" };
+const AR_TEXT = {
+  "#FULL STRETCHES": "#تمارين إطالة كاملة", "#UPPER LIMBS": "#الأطراف العلوية", "#ATTACK FOCUS": "#التركيز على الهجوم", "#STICKS": "#العصي", "SILENCE AND BREATH": "الصمت والتنفس",
+  "1: Barbell Overhead Press": "١: ضغط الكتف بالبار فوق الرأس", "2: Seated Dumbbell Press": "٢: ضغط الدمبل جالسًا", "3: Arnold Press": "٣: ضغط أرنولد", "4: Dumbbell Lateral Raise": "٤: رفرفة جانبية بالدمبل", "5: Dumbbell Front Raise": "٥: رفرفة أمامية بالدمبل", "6: Rear Delt Flyes": "٦: فتح للكتف الخلفي", "7: Barbell Upright Row": "٧: سحب عمودي بالبار", "8: Barbell Bicep Curl": "٨: تمرين بايسبس بالبار", "9: Dumbbell Alternate Curl": "٩: تمرين بايسبس بالتناوب بالدمبل", "10: Chin-Ups": "١٠: العقلة بقبضة معكوسة", "11: Concentration Curl": "١١: تمرين تركيز للبايسبس", "12: Incline Dumbbell Curl": "١٢: تمرين دمبل على مقعد مائل", "13: Close-Grip Bench Press": "١٣: ضغط بنش بقبضة ضيقة", "14: Dumbbell Skull Crushers": "١٤: تمرين ترايسبس بالدمبل", "15: Overhead DB Extension": "١٥: بسط الترايسبس فوق الرأس", "16: Bench Dips": "١٦: منخفضات المقعد", "17: Tricep Kickbacks": "١٧: ركلات الترايسبس الخلفية", "18: Hammer Curls": "١٨: تمرين المطرقة", "19: Reverse Barbell Curls": "١٩: تمرين عكسي بالبار", "20: Zottman Curls": "٢٠: تمرين زوتمان", "21: Cross-Body Hammer Curl": "٢١: تمرين المطرقة العابر للجسم", "22: Wrist Curls": "٢٢: تمرين الرسغ", "23: Reverse Wrist Curls": "٢٣: تمرين الرسغ العكسي", "24: Barbell Static Hold": "٢٤: ثبات بالبار", "25: Dumbbell Farmer's Walk": "٢٥: مشية المزارع بالدمبل", "26: Dead Hangs": "٢٦: التعلق الثابت", "27: Lying Neck Flexion (Front)": "٢٧: ثني الرقبة أثناء الاستلقاء (أمامي)", "28: Lying Neck Extension (Back)": "٢٨: بسط الرقبة أثناء الاستلقاء (خلفي)", "29: Lateral Neck Flexion (Side)": "٢٩: ثني الرقبة الجانبي", "30: Barbell Shrugs": "٣٠: هز الكتفين بالبار", "31: Dumbbell Shrugs": "٣١: هز الكتفين بالدمبل",
+  "1: Weighted Crunches": "١: تمارين الكرنش بالأثقال",
+  "2: Weighted Sit-Ups": "٢: تمارين الجلوس بالأثقال",
+  "3: Decline Weighted Sit-Ups": "٣: جلوس بالأثقال على مقعد مائل هابط",
+  "4: Decline Crunches": "٤: كرنش على مقعد مائل هابط",
+  "5: Bench Leg Raises": "٥: رفع الأرجل على المقعد",
+  "6: Hanging Leg Raises": "٦: رفع الأرجل معلقًا",
+  "7: Hanging Knee Raises": "٧: رفع الركبتين معلقًا",
+  "8: Toes to Bar": "٨: لمس القدمين للبار",
+  "9: L-Sit Hold": "٩: ثبات وضعية L",
+  "10: Tuck-Ups": "١٠: تمرين تاك أب",
+  "11: Dragon Flags": "١١: أعلام التنين",
+  "12: Weighted Plank": "١٢: بلانك بالأثقال",
+  "13: Barbell Rollouts": "١٣: دحرجة بالبار",
+  "14: Weighted V-Ups": "١٤: تمرين V بالأثقال",
+  "15: Dumbbell Toe Touches": "١٥: لمس أصابع القدم بالدمبل",
+  "16: Hanging Windshield Wipers": "١٦: مساحات الزجاج معلقًا",
+  "17: Front Plank": "١٧: بلانك أمامي",
+  "18: Hollow Body Hold": "١٨: ثبات الجسم المجوف",
+  "19: Weighted Hollow Body Hold": "١٩: ثبات الجسم المجوف بالأثقال",
+  "20: Dumbbell Side Bends": "٢٠: انحناء جانبي بالدمبل",
+  "21: Dumbbell Russian Twists": "٢١: اللف الروسي بالدمبل",
+  "22: Weighted Side Plank": "٢٢: بلانك جانبي بالأثقال",
+  "23: Hanging Oblique Knee Raises": "٢٣: رفع الركبتين المائل معلقًا",
+  "24: Hanging Oblique Leg Raises": "٢٤: رفع الأرجل المائل معلقًا",
+  "25: Windshield Wipers": "٢٥: مساحات الزجاج",
+  "26: Dumbbell Woodchoppers": "٢٦: تمرين قاطع الخشب بالدمبل",
+  "27: Saxon Side Bends": "٢٧: انحناء ساكسون الجانبي",
+  "28: Side Plank with Hip Dips": "٢٨: بلانك جانبي مع خفض الورك",
+  "29: Weighted Side Plank with Hip Dips": "٢٩: بلانك جانبي بالأثقال مع خفض الورك",
+  "30: Oblique Crunches": "٣٠: كرنش مائل",
+  "31: Bicycle Crunches": "٣١: كرنش الدراجة",
+  "32: Barbell Side Bends": "٣٢: انحناء جانبي بالبار",
+  "33: Barbell Russian Twists": "٣٣: اللف الروسي بالبار",
+  "34: Barbell Deadlifts": "٣٤: الرفعة الميتة بالبار",
+  "35: Barbell Romanian Deadlifts": "٣٥: الرفعة الميتة الرومانية بالبار",
+  "36: Barbell Good Mornings": "٣٦: صباح الخير بالبار",
+  "37: Barbell Stiff-Leg Deadlifts": "٣٧: الرفعة الميتة بالساق المستقيمة",
+  "38: Dumbbell Romanian Deadlifts": "٣٨: الرفعة الميتة الرومانية بالدمبل",
+  "39: Dumbbell Single-Leg RDL": "٣٩: الرفعة الميتة الرومانية بساق واحدة بالدمبل",
+  "40: Back Extensions": "٤٠: بسط الظهر",
+  "41: Superman Holds": "٤١: ثبات وضعية سوبرمان",
+  "42: Bird Dogs": "٤٢: تمرين بيرد دوغ",
+  "43: Barbell Hip Thrusts": "٤٣: دفع الورك بالبار",
+  "44: Barbell Glute Bridges": "٤٤: جسر الأرداف بالبار",
+  "45: Dumbbell Hip Thrusts": "٤٥: دفع الورك بالدمبل",
+  "46: Suitcase Deadlifts": "٤٦: الرفعة الميتة بحمل جانبي",
+  "47: Farmer's Walk": "٤٧: مشية المزارع",
+  "48: Waiter Walks": "٤٨: مشية النادل",
+  "49: Barbell Overhead Hold": "٤٩: ثبات البار فوق الرأس",
+  "50: Renegade Rows": "٥٠: تجديف رينيغيد",
+  "51: Dead Bug": "٥١: تمرين الحشرة الميتة",
+  "52: Weighted Dead Bug": "٥٢: تمرين الحشرة الميتة بالأثقال",
+  "53: Bear Crawl": "٥٣: زحف الدب",
+  "54: Barbell Front Squat": "٥٤: القرفصاء الأمامي بالبار",
+  "55: Barbell Overhead Press": "٥٥: ضغط الكتف بالبار فوق الرأس",
+  "56: Turkish Get-Up": "٥٦: النهوض التركي",
+  "57: Copenhagen Plank": "٥٧: بلانك كوبنهاغن",
+  "58: Side Plank": "٥٨: بلانك جانبي",
+  "59: Plank": "٥٩: بلانك",
+  "60: Dumbbell Suitcase Carry": "٦٠: حمل الحقيبة بالدمبل",
+  "61: Barbell Zercher Hold": "٦١: ثبات زيرشر بالبار",
+  "62: Barbell Zercher Squat": "٦٢: القرفصاء زيرشر بالبار",
+  "63: Dumbbell Pullover": "٦٣: بولأوفر بالدمبل",
+  "64: Barbell Pullover": "٦٤: بولأوفر بالبار",
+  "65: Kneeling Barbell Rollouts": "٦٥: دحرجة بالبار من وضع الركوع",
+  "66: Standing Barbell Rollouts": "٦٦: دحرجة بالبار من وضع الوقوف",
+  "67: Weighted Decline Plank": "٦٧: بلانك هابط بالأثقال",
+  "68: Dumbbell Chops": "٦٨: تمرين التقطيع بالدمبل",
+  "69: Reverse Crunches": "٦٩: كرنش عكسي",
+  "70: Weighted Reverse Crunches": "٧٠: كرنش عكسي بالأثقال",
+  "71: Scissor Kicks": "٧١: ركلات المقص",
+  "72: Flutter Kicks": "٧٢: ركلات الرفرفة",
+  "73: Hanging Scissor Kicks": "٧٣: ركلات المقص معلقًا",
+  "74: L-Sit Pull-Ups": "٧٤: العقلة بوضعية L",
+  "75: Dumbbell Plank Drag Throughs": "٧٥: سحب الدمبل في وضع البلانك",
+  "76: Body Saws": "٧٦: منشار الجسم",
+  "77: Ab Wheel Rollouts": "٧٧: دحرجة عجلة البطن",
+  "78: Barbell Thrusters": "٧٨: ثراستر بالبار",
+  "79: Dumbbell Thrusters": "٧٩: ثراستر بالدمبل",
+  "80: Man Makers": "٨٠: مان ميكرز",
+  "1: Barbell Back Squat": "١: القرفصاء الخلفي بالبار",
+  "2: Barbell Front Squat": "٢: القرفصاء الأمامي بالبار",
+  "3: Barbell Box Squat": "٣: القرفصاء الصندوقي بالبار",
+  "4: Barbell Hack Squat": "٤: قرفصاء هاك بالبار",
+  "5: Barbell Overhead Squat": "٥: القرفصاء فوق الرأس بالبار",
+  "6: Barbell Zercher Squat": "٦: القرفصاء زيرشر بالبار",
+  "7: Barbell Lunges": "٧: اندفاع بالبار",
+  "8: Barbell Reverse Lunges": "٨: اندفاع عكسي بالبار",
+  "9: Barbell Walking Lunges": "٩: اندفاع أثناء المشي بالبار",
+  "10: Barbell Step-Ups": "١٠: صعود الدرجة بالبار",
+  "11: Barbell Bulgarian Split Squats": "١١: القرفصاء البلغاري المنقسم بالبار",
+  "12: Dumbbell Goblet Squats": "١٢: قرفصاء الكأس بالدمبل",
+  "13: Dumbbell Lunges": "١٣: اندفاع بالدمبل",
+  "14: Dumbbell Reverse Lunges": "١٤: اندفاع عكسي بالدمبل",
+  "15: Dumbbell Walking Lunges": "١٥: اندفاع أثناء المشي بالدمبل",
+  "16: Dumbbell Step-Ups": "١٦: صعود الدرجة بالدمبل",
+  "17: Dumbbell Bulgarian Split Squats": "١٧: القرفصاء البلغاري المنقسم بالدمبل",
+  "18: Dumbbell Squats": "١٨: القرفصاء بالدمبل",
+  "19: Sissy Squats": "١٩: قرفصاء سيسي",
+  "20: Wall Sits": "٢٠: الجلوس على الحائط",
+  "21: Barbell Romanian Deadlifts": "٢١: الرفعة الميتة الرومانية بالبار",
+  "22: Barbell Stiff-Leg Deadlifts": "٢٢: الرفعة الميتة بالساق المستقيمة بالبار",
+  "23: Barbell Good Mornings": "٢٣: صباح الخير بالبار",
+  "24: Barbell Single-Leg RDL": "٢٤: الرفعة الميتة الرومانية بساق واحدة بالبار",
+  "25: Dumbbell Romanian Deadlifts": "٢٥: الرفعة الميتة الرومانية بالدمبل",
+  "26: Dumbbell Stiff-Leg Deadlifts": "٢٦: الرفعة الميتة بالساق المستقيمة بالدمبل",
+  "27: Dumbbell Single-Leg RDL": "٢٧: الرفعة الميتة الرومانية بساق واحدة بالدمبل",
+  "28: Nordic Hamstring Curls": "٢٨: تجريف أوتار الركبة النوردي",
+  "29: Glute-Ham Raises": "٢٩: رفعات الأرداف والأوتار",
+  "30: Barbell Hip Thrusts": "٣٠: دفع الورك بالبار",
+  "31: Barbell Glute Bridges": "٣١: جسر الأرداف بالبار",
+  "32: Barbell Single-Leg Hip Thrusts": "٣٢: دفع الورك بساق واحدة بالبار",
+  "33: Barbell Sumo Deadlifts": "٣٣: الرفعة الميتة سومو بالبار",
+  "34: Barbell Deficit Deadlifts": "٣٤: الرفعة الميتة من ارتفاع منخفض بالبار",
+  "35: Barbell B-Stance Hip Thrusts": "٣٥: دفع الورك بوضعية B بالبار",
+  "36: Dumbbell Hip Thrusts": "٣٦: دفع الورك بالدمبل",
+  "37: Dumbbell Glute Bridges": "٣٧: جسر الأرداف بالدمبل",
+  "38: Dumbbell Single-Leg Hip Thrusts": "٣٨: دفع الورك بساق واحدة بالدمبل",
+  "39: Dumbbell Frog Pumps": "٣٩: ضخ الضفدع بالدمبل",
+  "40: Dumbbell Donkey Kicks": "٤٠: ركلات الحمار بالدمبل",
+  "41: Dumbbell Fire Hydrants": "٤١: تمرين صنبور الحريق بالدمبل",
+  "42: Barbell Frog Pumps": "٤٢: ضخ الضفدع بالبار",
+  "43: Dumbbell Curtsy Lunges": "٤٣: اندفاع الانحناء بالدمبل",
+  "44: Barbell Curtsy Lunges": "٤٤: اندفاع الانحناء بالبار",
+  "45: Dumbbell Lateral Lunges": "٤٥: اندفاع جانبي بالدمبل",
+  "46: Barbell Lateral Lunges": "٤٦: اندفاع جانبي بالبار",
+  "47: Barbell Standing Calf Raises": "٤٧: رفع السمانة وقوفًا بالبار",
+  "48: Barbell Seated Calf Raises": "٤٨: رفع السمانة جالسًا بالبار",
+  "49: Dumbbell Standing Calf Raises": "٤٩: رفع السمانة وقوفًا بالدمبل",
+  "50: Dumbbell Seated Calf Raises": "٥٠: رفع السمانة جالسًا بالدمبل",
+  "51: Single-Leg Dumbbell Calf Raises": "٥١: رفع السمانة بساق واحدة بالدمبل",
+  "52: Single-Leg Barbell Calf Raises": "٥٢: رفع السمانة بساق واحدة بالبار",
+  "53: Farmer's Walk on Toes": "٥٣: مشية المزارع على أصابع القدم",
+  "54: Dumbbell Cossack Squats": "٥٤: قرفصاء القوزاق بالدمبل",
+  "55: Barbell Cossack Squats": "٥٥: قرفصاء القوزاق بالبار",
+  "56: Dumbbell Side Lunges": "٥٦: اندفاع جانبي بالدمبل",
+  "57: Barbell Side Lunges": "٥٧: اندفاع جانبي بالبار",
+  "58: Copenhagen Plank": "٥٨: بلانك كوبنهاغن",
+  "59: Side-Lying Clamshells": "٥٩: تمرين المحارة على الجانب",
+  "60: Side-Lying Leg Raises": "٦٠: رفع الأرجل على الجانب",
+  "61: Wall Tibialis Raises": "٦١: رفع عضلة الظنبوب على الحائط",
+  "62: Barbell Tibialis Raises": "٦٢: رفع عضلة الظنبوب بالبار",
+  "#HOT YOGA": "#يوغا ساخنة",
+  "#TRUNK": "#الجذع",
+  "#DEFENSE": "#الدفاع",
+  "#KNIVES": "#السكاكين",
+  "#Theta Waves Focus & Wim-Hof": "#تركيز موجات ثيتا وتنفس ويم هوف",
+  "#FLEXMOBILITY": "#المرونة والتنقل",
+  "#LOWER LIMBS": "#الأطراف السفلية",
+  "#CONTROL": "#التحكم",
+  "#G": "#جي",
+  "#Transcendental Meditation": "#التأمل التجاوزي"
+};
+const UI = { en: { subtitle: "Daily Mission Log", streak: "Streak", date: "Date", language: "Language", todayOperation: "Today's Operation", objectives: "Objectives — Complete All Five", footer: "Tap a mission to expand it. Progress saves automatically on this device.", following: "Following today's suggested rotation.", switched: "Suggested rotation today: MAJOR {plan} (you switched manually).", add: "+ Add item", itemPlaceholder: "Type an exercise or task…", notePlaceholder: "Add a short focus tag…", markDone: "Mark item done", reference: "See reference images", remove: "Remove item", complete: "COMPLETE" }, ar: { subtitle: "سجل المهام اليومي", streak: "السلسلة", date: "التاريخ", language: "اللغة", todayOperation: "مهمة اليوم", objectives: "الأهداف — أكمل المهام الخمس", footer: "اضغط على المهمة لفتحها. يُحفظ تقدمك تلقائيًا على هذا الجهاز.", following: "تتبع دورة اليوم المقترحة.", switched: "الدورة المقترحة اليوم: MAJOR {plan} (تم التغيير يدويًا).", add: "+ إضافة عنصر", itemPlaceholder: "اكتب تمرينًا أو مهمة…", notePlaceholder: "أضف وسم تركيز قصير…", markDone: "وضع علامة تم", reference: "عرض صور مرجعية", remove: "حذف العنصر", complete: "مكتمل" } };
+const MISSION_ORDER = ["BF", "WL", "MA", "SW", "MF"], STORAGE_KEY = "major-app-data", LANG_KEY = "major-app-lang";
+let lang = localStorage.getItem(LANG_KEY) === "ar" ? "ar" : "en";
+let expanded = { BF: false, WL: false, MA: false, SW: false, MF: false };
+const t = (key) => UI[lang][key];
+const translate = (value) => lang === "ar" && AR_TEXT[value] !== undefined ? AR_TEXT[value] : value;
+const titleFor = (code) => lang === "ar" ? AR_TITLES[code] : DEFAULT_PLANS.A[code].title;
+function loadData() { try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (saved?.plans) return saved; } catch (_) {} return { plans: structuredClone(DEFAULT_PLANS), log: {} }; }
 let state = loadData();
-
-function todayKey() {
-  const d = new Date();
-  return d.toISOString().slice(0, 10);
-}
-
-function suggestedPlanForToday() {
-  const anchor = new Date("2026-01-01T00:00:00");
-  const today = new Date(todayKey() + "T00:00:00");
-  const daysSince = Math.round((today - anchor) / 86400000);
-  const letters = ["A", "B", "C"];
-  return letters[((daysSince % 3) + 3) % 3];
-}
-
-function getTodayLog() {
-  const key = todayKey();
-  if (!state.log[key]) {
-    state.log[key] = { plan: suggestedPlanForToday(), itemsDone: {} };
-  }
-  if (!state.log[key].itemsDone) state.log[key].itemsDone = {};
-  return state.log[key];
-}
-
-/* Gets (and repairs the length of) the done-array for one mission today */
-function getItemsDoneArray(code) {
-  const today = getTodayLog();
-  const items = state.plans[today.plan][code].items;
-  let arr = today.itemsDone[code] || [];
-  // pad or trim so it always matches the current item count
-  while (arr.length < items.length) arr.push(false);
-  arr = arr.slice(0, items.length);
-  today.itemsDone[code] = arr;
-  return arr;
-}
-
-function isMissionComplete(code) {
-  const arr = getItemsDoneArray(code);
-  return arr.length > 0 && arr.every(Boolean);
-}
-
-/* ---- 4. Rendering ----------------------------------------- */
+function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function todayKey() { return new Date().toISOString().slice(0, 10); }
+function suggestedPlanForToday() { const days = Math.round((new Date(todayKey() + "T00:00:00") - new Date("2026-01-01T00:00:00")) / 86400000); return ["A", "B", "C"][(days % 3 + 3) % 3]; }
+function getTodayLog() { const key = todayKey(); return state.log[key] ||= { plan: suggestedPlanForToday(), itemsDone: {} }; }
+function getDone(code) { const items = state.plans[getTodayLog().plan][code].items, done = getTodayLog().itemsDone[code] ||= []; while (done.length < items.length) done.push(false); return done.slice(0, items.length); }
+function complete(code) { const done = getDone(code); return done.length > 0 && done.every(Boolean); }
+function escapeHtml(value) { const span = document.createElement("span"); span.textContent = value; return span.innerHTML; }
 function render() {
-  const today = getTodayLog();
-
-  document.getElementById("date-value").textContent = new Date().toLocaleDateString(
-    undefined,
-    { month: "short", day: "numeric" }
-  );
-
-  document.querySelectorAll(".plan-stamp").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.plan === today.plan);
-  });
-  document.getElementById("suggestion-text").textContent =
-    today.plan === suggestedPlanForToday()
-      ? "Following today's suggested rotation."
-      : `Suggested rotation today: MAJOR ${suggestedPlanForToday()} (you switched manually).`;
-
-  const missionsContainer = document.getElementById("missions");
-  missionsContainer.innerHTML = "";
-
-  MISSION_ORDER.forEach((code) => {
-    const mission = state.plans[today.plan][code];
-    const doneArr = getItemsDoneArray(code);
-    const doneCount = doneArr.filter(Boolean).length;
-    const allDone = isMissionComplete(code);
-
-    const card = document.createElement("div");
-    card.className = "mission-card" + (allDone ? " complete" : "");
-
-    const itemsHtml = mission.items
-      .map((item, i) => {
-        const checked = doneArr[i] ? "checked" : "";
-        const searchUrl =
-          "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(item || mission.title);
-        return `
-          <div class="item-row">
-            <input type="checkbox" class="item-check" data-code="${code}" data-index="${i}" ${checked} aria-label="Mark item done" />
-            <span class="item-text" contenteditable="true" data-code="${code}" data-index="${i}" data-placeholder="Type an exercise or task...">${item}</span>
-            <a class="item-photo" href="${searchUrl}" target="_blank" rel="noopener noreferrer" title="See reference images">🖼</a>
-            <button class="item-remove" data-code="${code}" data-index="${i}" title="Remove item">✕</button>
-          </div>`;
-      })
-      .join("");
-
-    card.innerHTML = `
-      <span class="mission-code">${code}</span>
-      <div class="mission-text">
-        <div class="mission-head">
-          <span class="mission-title">${mission.title}</span>
-          <span class="mission-progress">${doneCount}/${mission.items.length}</span>
-        </div>
-        <span class="mission-note" contenteditable="true" data-code="${code}" data-placeholder="Add a short focus tag...">${mission.note}</span>
-        <div class="item-list">${itemsHtml}</div>
-        <button class="item-add" data-code="${code}">+ Add item</button>
-      </div>
-    `;
-
-    missionsContainer.appendChild(card);
-  });
-
-  updateStreak();
+  document.documentElement.lang = lang; document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"; document.body.classList.toggle("lang-ar", lang === "ar");
+  document.querySelectorAll("[data-i18n]").forEach((el) => el.textContent = t(el.dataset.i18n));
+  document.getElementById("lang-toggle").textContent = lang === "en" ? "AR" : "EN";
+  document.getElementById("date-value").textContent = new Date().toLocaleDateString(lang === "ar" ? "ar-EG" : undefined, { month: "short", day: "numeric" });
+  const today = getTodayLog(); document.querySelectorAll(".plan-stamp").forEach((el) => el.classList.toggle("active", el.dataset.plan === today.plan));
+  document.getElementById("suggestion-text").textContent = today.plan === suggestedPlanForToday() ? t("following") : t("switched").replace("{plan}", suggestedPlanForToday());
+  const container = document.getElementById("missions"); container.innerHTML = "";
+  MISSION_ORDER.forEach((code) => { const mission = state.plans[today.plan][code], done = getDone(code), isOpen = expanded[code], allDone = complete(code); const items = mission.items.map((item, index) => `<div class="item-row"><input type="checkbox" class="item-check" data-code="${code}" data-index="${index}" ${done[index] ? "checked" : ""} aria-label="${t("markDone")}"><span class="item-text" contenteditable="true" data-code="${code}" data-index="${index}" data-source="${escapeHtml(item)}" data-placeholder="${t("itemPlaceholder")}">${escapeHtml(translate(item))}</span><a class="item-photo" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item || mission.title)}" target="_blank" rel="noopener noreferrer" title="${t("reference")}">🖼</a><button class="item-remove" data-code="${code}" data-index="${index}" title="${t("remove")}">✕</button></div>`).join("");
+    const card = document.createElement("div"); card.className = `mission-card${allDone ? " complete" : ""}${isOpen ? " open" : " collapsed"}`; card.dataset.complete = t("complete"); card.innerHTML = `<span class="mission-code">${code}</span><div class="mission-text"><button class="mission-head" data-code="${code}" aria-expanded="${isOpen}"><span class="chevron">▸</span><span class="mission-title">${titleFor(code)}</span><span class="mission-progress">${done.filter(Boolean).length}/${mission.items.length}</span></button><div class="mission-body"><span class="mission-note" contenteditable="true" data-code="${code}" data-source="${escapeHtml(mission.note)}" data-placeholder="${t("notePlaceholder")}">${escapeHtml(translate(mission.note))}</span><div class="item-list">${items}</div><button class="item-add" data-code="${code}">${t("add")}</button></div></div>`; container.appendChild(card); });
+  let streak = 0, cursor = new Date(); if (!MISSION_ORDER.every(complete)) cursor.setDate(cursor.getDate() - 1); while (true) { const entry = state.log[cursor.toISOString().slice(0, 10)]; if (entry && MISSION_ORDER.every((code) => Array.isArray(entry.itemsDone?.[code]) && entry.itemsDone[code].length && entry.itemsDone[code].every(Boolean))) { streak++; cursor.setDate(cursor.getDate() - 1); } else break; } document.getElementById("streak-value").textContent = streak;
 }
-
-/* ---- 5. Streak calculation --------------------------------- */
-function updateStreak() {
-  let streak = 0;
-  let cursor = new Date();
-
-  const today = getTodayLog();
-  const todayDone = MISSION_ORDER.every((c) => isMissionComplete(c));
-  if (!todayDone) cursor.setDate(cursor.getDate() - 1);
-
-  while (true) {
-    const key = cursor.toISOString().slice(0, 10);
-    const entry = state.log[key];
-    const done =
-      entry &&
-      entry.itemsDone &&
-      MISSION_ORDER.every((c) => {
-        const arr = entry.itemsDone[c];
-        return Array.isArray(arr) && arr.length > 0 && arr.every(Boolean);
-      });
-    if (done) {
-      streak++;
-      cursor.setDate(cursor.getDate() - 1);
-    } else break;
-  }
-
-  document.getElementById("streak-value").textContent = streak;
-}
-
-/* ---- 6. Event handling -------------------------------------- */
-document.getElementById("plan-tabs").addEventListener("click", (e) => {
-  const btn = e.target.closest(".plan-stamp");
-  if (!btn) return;
-  getTodayLog().plan = btn.dataset.plan;
-  saveData();
-  render();
-});
-
-document.getElementById("missions").addEventListener("click", (e) => {
-  const addBtn = e.target.closest(".item-add");
-  if (addBtn) {
-    const code = addBtn.dataset.code;
-    const plan = getTodayLog().plan;
-    state.plans[plan][code].items.push("");
-    saveData();
-    render();
-    return;
-  }
-  const removeBtn = e.target.closest(".item-remove");
-  if (removeBtn) {
-    const code = removeBtn.dataset.code;
-    const index = Number(removeBtn.dataset.index);
-    const plan = getTodayLog().plan;
-    state.plans[plan][code].items.splice(index, 1);
-    const doneArr = getTodayLog().itemsDone[code] || [];
-    doneArr.splice(index, 1);
-    saveData();
-    render();
-  }
-});
-
-document.getElementById("missions").addEventListener("change", (e) => {
-  if (!e.target.matches(".item-check")) return;
-  const code = e.target.dataset.code;
-  const index = Number(e.target.dataset.index);
-  const arr = getItemsDoneArray(code);
-  arr[index] = e.target.checked;
-  saveData();
-  render();
-});
-
-document.getElementById("missions").addEventListener(
-  "blur",
-  (e) => {
-    const plan = getTodayLog().plan;
-    if (e.target.matches(".item-text")) {
-      const code = e.target.dataset.code;
-      const index = Number(e.target.dataset.index);
-      state.plans[plan][code].items[index] = e.target.textContent.trim();
-      saveData();
-    } else if (e.target.matches(".mission-note")) {
-      const code = e.target.dataset.code;
-      state.plans[plan][code].note = e.target.textContent.trim();
-      saveData();
-    }
-  },
-  true
-);
-
-/* ---- 7. Init -------------------------------------------------- */
+document.getElementById("lang-toggle").addEventListener("click", () => { lang = lang === "en" ? "ar" : "en"; localStorage.setItem(LANG_KEY, lang); render(); });
+document.getElementById("plan-tabs").addEventListener("click", (event) => { const button = event.target.closest(".plan-stamp"); if (button) { getTodayLog().plan = button.dataset.plan; saveData(); render(); } });
+document.getElementById("missions").addEventListener("click", (event) => { const head = event.target.closest(".mission-head"), add = event.target.closest(".item-add"), remove = event.target.closest(".item-remove"); if (head) { expanded[head.dataset.code] = !expanded[head.dataset.code]; render(); } else if (add) { state.plans[getTodayLog().plan][add.dataset.code].items.push(""); saveData(); render(); } else if (remove) { const code = remove.dataset.code, index = +remove.dataset.index; state.plans[getTodayLog().plan][code].items.splice(index, 1); (getTodayLog().itemsDone[code] || []).splice(index, 1); saveData(); render(); } });
+document.getElementById("missions").addEventListener("change", (event) => { if (!event.target.matches(".item-check")) return; const done = getDone(event.target.dataset.code); done[+event.target.dataset.index] = event.target.checked; getTodayLog().itemsDone[event.target.dataset.code] = done; saveData(); render(); });
+document.getElementById("missions").addEventListener("blur", (event) => { const el = event.target; if (!el.matches(".item-text, .mission-note")) return; const value = el.textContent.trim(), source = el.dataset.source || ""; const savedValue = value === translate(source) ? source : value, code = el.dataset.code, plan = getTodayLog().plan; if (el.matches(".item-text")) state.plans[plan][code].items[+el.dataset.index] = savedValue; else state.plans[plan][code].note = savedValue; saveData(); }, true);
 render();
