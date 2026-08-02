@@ -329,8 +329,7 @@ let expanded = { BF: false, WL: false, MA: false, SW: false, MF: false };
 const t = (key) => UI[lang][key];
 const translate = (value) => lang === "ar" && AR_TEXT[value] !== undefined ? AR_TEXT[value] : value;
 const titleFor = (code) => lang === "ar" ? AR_TITLES[code] : DEFAULT_PLANS.A[code].title;
-function loadData() { try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (saved?.plans) return saved; } catch (_) {} return { plans: structuredClone(DEFAULT_PLANS), log: {} }; }
-let state = loadData();function loadData() {
+function loadData() {
   let saved;
   try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (_) {}
   const plans = structuredClone(DEFAULT_PLANS);
@@ -351,6 +350,7 @@ let state = loadData();function loadData() {
   }
   return { plans, log: (saved && saved.log) || {} };
 }
+let state = loadData();
 function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function todayKey() { return new Date().toISOString().slice(0, 10); }
 function suggestedPlanForToday() { const days = Math.round((new Date(todayKey() + "T00:00:00") - new Date("2026-01-01T00:00:00")) / 86400000); return ["A", "B", "C"][(days % 3 + 3) % 3]; }
